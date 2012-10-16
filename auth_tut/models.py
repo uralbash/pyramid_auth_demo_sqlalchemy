@@ -1,3 +1,4 @@
+import pytils
 import urllib
 
 from sqlalchemy import (
@@ -83,8 +84,9 @@ def get_page(key):
 
 
 def websafe_uri(txt):
+    txt = pytils.translit.translify(txt)
     uri = txt.replace(' ', '-')
-    return urllib.quote(uri)
+    return urllib.quote(uri.encode('utf-8'))
 
 
 class RootFactory(object):
